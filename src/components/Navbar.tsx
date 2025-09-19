@@ -92,7 +92,7 @@ export default function Navbar() {
               About
             </Link>
             <Link
-              href="/grants"
+              href="/Grants"
               className="block px-3 py-2 rounded-md hover:bg-green-500"
             >
               Grants
@@ -104,7 +104,7 @@ export default function Navbar() {
               Membership
             </Link>
             <Link
-              href="/news"
+              href="/News"
               className="block px-3 py-2 rounded-md hover:bg-green-500"
             >
               News
