@@ -29,7 +29,7 @@ export default function Hero() {
     {
       title: "Agriculture Funding",
       description:
-        "Access grants and low-interest loans to expand your operations and invest in equipment.",
+        "Open to African farmers with active PFN membershp",
       icon: FaTractor,
       bgColor: "bg-green-100",
       iconColor: "text-green-700",
@@ -37,7 +37,7 @@ export default function Hero() {
     {
       title: "Fishing Program",
       description:
-        "Support for sustainable aquaculture and modern fishing gear for coastal communities.",
+        "Open to African farmers with active PFN membershp",
       icon: FaFish,
       bgColor: "bg-blue-100",
       iconColor: "text-blue-700",
@@ -45,7 +45,7 @@ export default function Hero() {
     {
       title: "Training & Development",
       description:
-        "Workshops on modern techniques, business management, and climate resilience.",
+        "Open to African farmers with active PFN membershp",
       icon: FaChalkboardTeacher,
       bgColor: "bg-yellow-100",
       iconColor: "text-yellow-700",
@@ -54,11 +54,11 @@ export default function Hero() {
 
   // 2. Eligibility List
   const eligibilityCriteria = [
-    "Valid national identification (ID or Passport).",
-    "Proof of land ownership or an active lease agreement.",
-    "Minimum of 2 years of active farming or fishing experience.",
-    "Commitment to implementing sustainable practices.",
-    "An active bank account in the applicant's name.",
+    "Garant up to UDS 50000",
+    "Preferetial rate loans",
+    "Agricultural equipement financing",
+    "Start-up capital for new farmers",
+    "Custom technical support",
   ];
 
   // On découpe les critères en 3 cartes
@@ -139,7 +139,7 @@ export default function Hero() {
               className="rounded-lg bg-white/10 p-6 backdrop-blur-sm"
             >
               <h3 className="mb-4 text-2xl font-semibold">
-                Eligibility  {idx + 1}
+                Eligibility :
               </h3>
               <ul className="space-y-3 text-lg">
                 {chunk.map((item, i) => (
