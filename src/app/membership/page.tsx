@@ -74,7 +74,7 @@ export default function MembershipPage() {
         </h2>
         <p className="text-lg text-gray-700 mb-6 max-w-2xl mx-auto">
           therefore you are welcomed. the membership fee breakdown is as follows:
-         <ul className=" text-yellow-500 bg-green-700 rounded-lg mt-20 grid gap-8 md:grid-cols-1"> <li>individuals membeship fee: USD100</li> <li>Group membership fee: USD200</li> <li>company membership fee: USD280</li><li>cooperative membership fee: USD250</li></ul>
+         <ul className=" text-yellow-500 bg-green-700 rounded-lg mt-20 grid gap-8 md:grid-cols-1"> <li>Individuals membeship fee: USD100</li> <li>Group membership fee: USD200</li> <li>Company membership fee: USD280</li><li>Cooperative membership fee: USD250</li></ul>
         </p>
         <Button variant="primary">Join Now</Button>
       </section>
