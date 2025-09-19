@@ -59,6 +59,17 @@ export default function Hero() {
     "Agricultural equipement financing",
     "Start-up capital for new farmers",
     "Custom technical support",
+    "Roat and net financing",
+    "Preservation technologies",
+    "Morden thechnologies training",
+    "Access to intemational markets",
+    "Marine insurance",
+    "Monthly thecnical workshops",
+    "Sustainable agricultural certification",
+    "Business management training",
+    "Access to new technologies",
+    "Expert mentorship",
+    
   ];
 
   // On découpe les critères en 3 cartes
