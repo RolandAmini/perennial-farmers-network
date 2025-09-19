@@ -139,7 +139,7 @@ export default function Hero() {
               className="rounded-lg bg-white/10 p-6 backdrop-blur-sm"
             >
               <h3 className="mb-4 text-2xl font-semibold">
-                Eligibility Card {idx + 1}
+                Eligibility  {idx + 1}
               </h3>
               <ul className="space-y-3 text-lg">
                 {chunk.map((item, i) => (
