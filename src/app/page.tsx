@@ -40,7 +40,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <Hero />
+      
 
       {/* Main Call to Action Section */}
       <section className="bg-white px-6 py-16 text-center">
@@ -61,6 +61,7 @@ export default function Home() {
           </button>
         </div>
       </section>
+      <Hero />
 
       {/* Features / Services Section */}
       <section className="container mx-auto px-6 py-16">

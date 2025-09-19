@@ -2,10 +2,57 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { FaTractor, FaFish, FaChalkboardTeacher, FaCheckCircle } from "react-icons/fa";
+import {
+  FaTractor,
+  FaFish,
+  FaChalkboardTeacher,
+  FaCheckCircle,
+} from "react-icons/fa";
+
+// Helper pour découper un tableau en N sous-tableaux
+function chunkArray<T>(arr: T[], chunks: number): T[][] {
+  const size = Math.ceil(arr.length / chunks);
+  const result: T[][] = [];
+  for (let i = 0; i < arr.length; i += size) {
+    result.push(arr.slice(i, i + size));
+  }
+  return result;
+}
 
 export default function Hero() {
-  // Eligibility list items
+  // =========================================================================
+  // 👇 EDIT YOUR CONTENT HERE 👇
+  // =========================================================================
+
+  // 1. Program Cards
+  const programCards = [
+    {
+      title: "Agriculture Funding",
+      description:
+        "Access grants and low-interest loans to expand your operations and invest in equipment.",
+      icon: FaTractor,
+      bgColor: "bg-green-100",
+      iconColor: "text-green-700",
+    },
+    {
+      title: "Fishing Program",
+      description:
+        "Support for sustainable aquaculture and modern fishing gear for coastal communities.",
+      icon: FaFish,
+      bgColor: "bg-blue-100",
+      iconColor: "text-blue-700",
+    },
+    {
+      title: "Training & Development",
+      description:
+        "Workshops on modern techniques, business management, and climate resilience.",
+      icon: FaChalkboardTeacher,
+      bgColor: "bg-yellow-100",
+      iconColor: "text-yellow-700",
+    },
+  ];
+
+  // 2. Eligibility List
   const eligibilityCriteria = [
     "Valid national identification (ID or Passport).",
     "Proof of land ownership or an active lease agreement.",
@@ -14,12 +61,19 @@ export default function Hero() {
     "An active bank account in the applicant's name.",
   ];
 
+  // On découpe les critères en 3 cartes
+  const eligibilityChunks = chunkArray(eligibilityCriteria, 3);
+
+  // =========================================================================
+  // 👆 END OF EDITABLE CONTENT 👆
+  // =========================================================================
+
   return (
     <section className="relative bg-green-800 text-white">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/hero-banner.jpg" // Place your image in /public/hero-banner.jpg
+          src="/hero-banner.jpg"
           alt="African farmers and fishers"
           fill
           className="object-cover object-center opacity-20"
@@ -29,82 +83,85 @@ export default function Hero() {
 
       {/* Main Content Container */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-16 md:py-24">
-        
         {/* Header */}
         <div className="mb-16 text-center">
-          <h1 className="mb-4 text-4xl font-bold leading-tight md:text-6xl">
+          <h1 className="mb-6 text-4xl font-bold leading-tight md:text-6xl">
             Our Programs
           </h1>
           <p className="mx-auto max-w-3xl text-lg text-gray-100 md:text-xl">
             Discover our funding and development programs designed specifically
             for African farmers and fishers.
           </p>
-        </div>
 
-        {/* Program Cards */}
-        <div className="grid gap-8 md:grid-cols-3">
-          
-          {/* Card 1: Funding */}
-          <div className="flex flex-col rounded-lg bg-white p-6 text-gray-800 shadow-lg transition-transform hover:-translate-y-1">
-            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
-              <FaTractor className="text-2xl text-green-700" />
-            </div>
-            <h2 className="mb-3 text-xl font-bold">Agriculture Funding</h2>
-            <p className="flex-grow text-gray-600">
-              Access grants and low-interest loans to expand your operations and invest in equipment.
-            </p>
-          </div>
-
-          {/* Card 2: Fishing */}
-          <div className="flex flex-col rounded-lg bg-white p-6 text-gray-800 shadow-lg transition-transform hover:-translate-y-1">
-            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
-              <FaFish className="text-2xl text-blue-700" />
-            </div>
-            <h2 className="mb-3 text-xl font-bold">Fishing Program</h2>
-            <p className="flex-grow text-gray-600">
-              Support for sustainable aquaculture and modern fishing gear for coastal communities.
-            </p>
-          </div>
-
-          {/* Card 3: Training */}
-          <div className="flex flex-col rounded-lg bg-white p-6 text-gray-800 shadow-lg transition-transform hover:-translate-y-1">
-            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-yellow-100">
-              <FaChalkboardTeacher className="text-2xl text-yellow-700" />
-            </div>
-            <h2 className="mb-3 text-xl font-bold">Training & Development</h2>
-            <p className="flex-grow text-gray-600">
-              Workshops on modern techniques, business management, and climate resilience.
-            </p>
-          </div>
-        </div>
-
-        {/* Eligibility Section */}
-        <div className="mt-20 rounded-lg bg-white/10 p-8 backdrop-blur-sm">
-          <h3 className="mb-4 text-3xl font-bold">Eligibility</h3>
-          <p className="mb-6 text-lg text-gray-200">
-            Open to African farmers and fishers with active operations. To qualify, you must meet the following criteria:
-          </p>
-
-          <ul className="mb-8 space-y-3 text-lg">
-            {eligibilityCriteria.map((item, index) => (
-              <li key={index} className="flex items-start">
-                <FaCheckCircle className="mr-3 mt-1 flex-shrink-0 text-green-400" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-
-          {/* Final Apply Button */}
-          <div className="flex justify-center md:justify-start">
+          {/* Header Buttons */}
+          <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
             <Link
-              href="/apply"
-              className="inline-flex items-center rounded-lg bg-yellow-500 px-8 py-4 text-lg font-bold text-gray-900 shadow-lg transition hover:bg-yellow-400 focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2 focus:ring-offset-green-800"
+              href="/grants"
+              className="rounded-lg bg-white px-6 py-3 font-semibold text-green-700 shadow transition hover:bg-gray-100"
             >
-              Apply Now
+              View All Grants
+            </Link>
+            <Link
+              href="/membership"
+              className="rounded-lg bg-green-900 px-6 py-3 font-semibold text-white shadow transition hover:bg-green-700"
+            >
+              Join Network
             </Link>
           </div>
         </div>
-        
+
+        {/* Program Cards Grid */}
+        <div className="grid gap-8 md:grid-cols-3">
+          {programCards.map((card, index) => {
+            const Icon = card.icon;
+            return (
+              <div
+                key={index}
+                className="flex flex-col rounded-lg bg-white p-6 text-gray-800 shadow-lg transition-transform hover:-translate-y-1"
+              >
+                <div
+                  className={`mb-4 flex h-12 w-12 items-center justify-center rounded-full ${card.bgColor}`}
+                >
+                  <Icon className={`text-2xl ${card.iconColor}`} />
+                </div>
+                <h2 className="mb-3 text-xl font-bold">{card.title}</h2>
+                <p className="flex-grow text-gray-600">{card.description}</p>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Eligibility Section tout en 3 cartes */}
+        <div className="mt-20 grid gap-8 md:grid-cols-3">
+          {eligibilityChunks.map((chunk, idx) => (
+            <div
+              key={idx}
+              className="rounded-lg bg-white/10 p-6 backdrop-blur-sm"
+            >
+              <h3 className="mb-4 text-2xl font-semibold">
+                Eligibility Card {idx + 1}
+              </h3>
+              <ul className="space-y-3 text-lg">
+                {chunk.map((item, i) => (
+                  <li key={i} className="flex items-start">
+                    <FaCheckCircle className="mr-3 mt-1 flex-shrink-0 text-green-400" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Final Apply Button */}
+        <div className="mt-12 flex justify-center md:justify-start">
+          <Link
+            href="/apply"
+            className="inline-flex items-center rounded-lg bg-yellow-500 px-8 py-4 text-lg font-bold text-gray-900 shadow-lg transition hover:bg-yellow-400 focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2 focus:ring-offset-green-800"
+          >
+            Apply Now
+          </Link>
+        </div>
       </div>
     </section>
   );
