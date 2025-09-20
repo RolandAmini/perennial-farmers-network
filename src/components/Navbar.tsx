@@ -10,9 +10,9 @@ export default function Navbar() {
   const routes = [
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
-    { href: "/grants", label: "Grants" },
+   { href: "/grants", label: "Grants" },
     { href: "/membership", label: "Membership" },
-    { href: "/news", label: "News" },
+     { href: "/news", label: "News" },
     { href: "/contact", label: "Contact" },
   ];
 
