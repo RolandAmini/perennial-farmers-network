@@ -67,15 +67,7 @@ export default function Hero() {
 
   return (
     <section className="relative bg-green-800 text-white">
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/hero-banner.jpg"
-          alt="African farmers and fishers"
-          fill
-          className="object-cover object-center opacity-20"
-          priority
-        />
-      </div>
+    
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-16 md:py-24">
         <div className="mb-16 text-center">

@@ -29,13 +29,13 @@ export default function ContactPage() {
       });
 
       if (res.ok) {
-        setStatus("✅ Message envoyé avec succès !");
+        setStatus("✅ Message sent successfully!");
         setForm({ name: "", email: "", message: "" });
       } else {
-        setStatus("❌ Une erreur est survenue. Réessayez.");
+        setStatus("❌An error has occurred. Please try again.");
       }
     } catch (error) {
-      setStatus("⚠️ Erreur de connexion au serveur.");
+      setStatus("⚠️ Error connecting to the server.");
     } finally {
       setLoading(false);
     }
@@ -132,11 +132,7 @@ export default function ContactPage() {
           <p className="text-lg text-gray-700 mb-8">
             PFN is active across Africa, supporting farmers and fishers in all regions.
           </p>
-          <img
-            src="/africa-map.png"
-            alt="PFN regions highlighted"
-            className="mx-auto rounded-lg shadow-md max-w-lg"
-          />
+         
         </div>
       </section>
     </main>
