@@ -1,8 +1,46 @@
 "use client";
 
+import { useState } from "react";
 import { FaEnvelope, FaWhatsapp, FaMapMarkerAlt } from "react-icons/fa";
 
 export default function ContactPage() {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState("");
+
+  // Fonction pour envoyer le formulaire
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setStatus("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      if (res.ok) {
+        setStatus("✅ Message envoyé avec succès !");
+        setForm({ name: "", email: "", message: "" });
+      } else {
+        setStatus("❌ Une erreur est survenue. Réessayez.");
+      }
+    } catch (error) {
+      setStatus("⚠️ Erreur de connexion au serveur.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <main className="min-h-screen bg-white text-gray-800">
       {/* Header */}
@@ -40,35 +78,35 @@ export default function ContactPage() {
         {/* Contact Form */}
         <div>
           <h2 className="text-2xl font-bold text-green-700 mb-6">✉️ Send a Message</h2>
-          <form className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Name
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
               <input
                 type="text"
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:outline-none"
                 placeholder="Your full name"
                 required
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Email
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
               <input
                 type="email"
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:outline-none"
                 placeholder="you@example.com"
                 required
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Message
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
               <textarea
                 rows={4}
+                value={form.message}
+                onChange={(e) => setForm({ ...form, message: e.target.value })}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:outline-none"
                 placeholder="Write your message here..."
                 required
@@ -76,11 +114,14 @@ export default function ContactPage() {
             </div>
             <button
               type="submit"
+              disabled={loading}
               className="w-full bg-green-700 text-white py-3 px-6 rounded-lg shadow hover:bg-green-800 transition"
             >
-              Send Message
+              {loading ? "Sending..." : "Send Message"}
             </button>
           </form>
+
+          {status && <p className="mt-4 text-center text-sm">{status}</p>}
         </div>
       </section>
 
@@ -89,8 +130,7 @@ export default function ContactPage() {
         <div className="max-w-5xl mx-auto px-6 text-center">
           <h2 className="text-2xl font-bold text-green-700 mb-6">🌍 Our Reach</h2>
           <p className="text-lg text-gray-700 mb-8">
-            PFN is active across Africa, supporting farmers and fishers in all
-            regions.
+            PFN is active across Africa, supporting farmers and fishers in all regions.
           </p>
           <img
             src="/africa-map.png"

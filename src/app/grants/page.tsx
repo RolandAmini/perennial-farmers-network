@@ -27,7 +27,14 @@ export default function GrantsPage() {
           ministries. This funding supports farmers and fishers across Africa
           with equipment, seeds, and business expansion.
         </p>
-        <Button variant="primary">Apply Now</Button>
+        <Button variant="primary">
+
+          <a    href="https://wa.me/254775538394"
+                target="_blank"
+                rel="noopener noreferrer">
+        Apply Now
+          </a>
+        </Button>
       </section>
 
       {/* What We Fund */}
