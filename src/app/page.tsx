@@ -1,16 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image"; // Import for optimized images
+import Image from "next/image";
 import Hero from "@/components/Hero";
 import Card from "@/components/Card";
 import { FaStore, FaGraduationCap, FaHandHoldingUsd } from "react-icons/fa";
 
 export default function Home() {
-    const [showLoader, setShowLoader] = useState(true); // on démarre avec le loader actif
+  const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
-    // timer pour masquer le loader après 2 secondes
     const timer = setTimeout(() => {
       setShowLoader(false);
     }, 2000);
@@ -37,7 +36,6 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      
 
       {/* Main Call to Action Section */}
       <section className="bg-white px-6 py-16 text-center">
@@ -54,12 +52,13 @@ export default function Home() {
             className="rounded-lg bg-green-700 px-8 py-3 text-lg font-medium text-white shadow-md transition-colors hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
             aria-label="Apply for farming support"
           >
-            <a  href="https://wa.me/254775538394"
-    target="_blank"
-    rel="noopener noreferrer">
- Apply for Support
-    </a>
-           
+            <a
+              href="https://wa.me/254775538394"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Apply for Support
+            </a>
           </button>
         </div>
       </section>
@@ -71,14 +70,12 @@ export default function Home() {
           How We Help You Grow
         </h2>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          
           <Card
             icon={<FaStore className="text-green-600" size={32} />}
             title="Market Access"
             description="Connect with regional and global markets to sell your produce at fair prices."
           />
 
-          {/* Example of additional cards you could add */}
           <Card
             icon={<FaGraduationCap className="text-blue-600" size={32} />}
             title="Training & Workshops"
@@ -90,7 +87,6 @@ export default function Home() {
             title="Financial Grants"
             description="Access funding and micro-grants to invest in your farm's future."
           />
-
         </div>
       </section>
     </main>

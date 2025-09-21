@@ -20,32 +20,24 @@ function chunkArray<T>(arr: T[], chunks: number): T[][] {
 }
 
 export default function Hero() {
-  // =========================================================================
-  // 👇 EDIT YOUR CONTENT HERE 👇
-  // =========================================================================
-
-  // 1. Program Cards
   const programCards = [
     {
       title: "Agriculture Funding",
-      description:
-        "Open to African farmers with active PFN membershp",
+      description: "Open to African farmers with active PFN membershp",
       icon: FaTractor,
       bgColor: "bg-green-100",
       iconColor: "text-green-700",
     },
     {
       title: "Fishing Program",
-      description:
-        "Open to African farmers with active PFN membershp",
+      description: "Open to African farmers with active PFN membershp",
       icon: FaFish,
       bgColor: "bg-blue-100",
       iconColor: "text-blue-700",
     },
     {
       title: "Training & Development",
-      description:
-        "Open to African farmers with active PFN membershp",
+      description: "Open to African farmers with active PFN membershp",
       icon: FaChalkboardTeacher,
       bgColor: "bg-yellow-100",
       iconColor: "text-yellow-700",
@@ -54,34 +46,27 @@ export default function Hero() {
 
   // 2. Eligibility List
   const eligibilityCriteria = [
-    "Garant up to UDS 50000",
+    "Grants up to UDS 50000",
     "Preferetial rate loans",
-    "Agricultural equipement financing",
+    "Agricultural equipment financing",
     "Start-up capital for new farmers",
     "Custom technical support",
-    "Roat and net financing",
+    "Float and net financing",
     "Preservation technologies",
-    "Morden thechnologies training",
-    "Access to intemational markets",
+    "Modern technologies training",
+    "Access to international markets",
     "Marine insurance",
-    "Monthly thecnical workshops",
+    "Monthly technical workshops",
     "Sustainable agricultural certification",
     "Business management training",
     "Access to new technologies",
     "Expert mentorship",
-    
   ];
 
-  // On découpe les critères en 3 cartes
   const eligibilityChunks = chunkArray(eligibilityCriteria, 3);
-
-  // =========================================================================
-  // 👆 END OF EDITABLE CONTENT 👆
-  // =========================================================================
 
   return (
     <section className="relative bg-green-800 text-white">
-      {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/hero-banner.jpg"
@@ -92,9 +77,7 @@ export default function Hero() {
         />
       </div>
 
-      {/* Main Content Container */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-16 md:py-24">
-        {/* Header */}
         <div className="mb-16 text-center">
           <h1 className="mb-6 text-4xl font-bold leading-tight md:text-6xl">
             Our Programs
@@ -121,7 +104,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Program Cards Grid */}
         <div className="grid gap-8 md:grid-cols-3">
           {programCards.map((card, index) => {
             const Icon = card.icon;
@@ -149,9 +131,7 @@ export default function Hero() {
               key={idx}
               className="rounded-lg bg-white/10 p-6 backdrop-blur-sm"
             >
-              <h3 className="mb-4 text-2xl font-semibold">
-                Eligibility :
-              </h3>
+              <h3 className="mb-4 text-2xl font-semibold">Eligibility :</h3>
               <ul className="space-y-3 text-lg">
                 {chunk.map((item, i) => (
                   <li key={i} className="flex items-start">

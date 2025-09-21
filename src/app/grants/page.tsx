@@ -12,7 +12,7 @@ export default function GrantsPage() {
             Grants & Opportunities
           </h1>
           <p className="text-lg md:text-xl text-green-100">
-            Access funding, inputs, and resources to grow your agribusiness.
+            Access funding, inputs, and resources to grow your agri-business.
           </p>
         </div>
       </section>

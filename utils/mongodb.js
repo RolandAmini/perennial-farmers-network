@@ -1,7 +1,6 @@
-// utils/mongodb.js
 import mongoose from "mongoose";
 
-let isConnected = false; // Suivi de la connexion
+let isConnected = false;
 
 export async function connectDB() {
   if (isConnected) return;
