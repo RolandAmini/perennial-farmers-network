@@ -7,25 +7,23 @@ import Card from "@/components/Card";
 import { FaStore, FaGraduationCap, FaHandHoldingUsd } from "react-icons/fa";
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
+    const [showLoader, setShowLoader] = useState(true); // on démarre avec le loader actif
 
-  // Simulates a loading screen. In a real app, this would depend on data fetching.
   useEffect(() => {
+    // timer pour masquer le loader après 2 secondes
     const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000); // Reduced to 2 seconds for a snappier feel
+      setShowLoader(false);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
 
-  // --- Splash Screen (Loading State) ---
-  if (isLoading) {
+  if (showLoader) {
     return (
       <main className="flex min-h-screen flex-col items-center justify-center bg-green-700">
         <div className="flex flex-col items-center justify-center space-y-4 animate-fadeIn">
           {/* Logo Container */}
           <div className="flex h-24 w-24 items-center justify-center rounded-full bg-white shadow-lg">
-            {/* Replace with <Image src="/logo.png" alt="PFN Logo" width={80} height={80} /> when ready */}
             <span className="text-3xl font-bold text-green-700">PFN</span>
           </div>
           <h2 className="text-xl font-semibold text-white">
@@ -35,7 +33,6 @@ export default function Home() {
       </main>
     );
   }
-
   // --- Main Page Content ---
   return (
     <main className="min-h-screen bg-gray-50">
@@ -57,7 +54,12 @@ export default function Home() {
             className="rounded-lg bg-green-700 px-8 py-3 text-lg font-medium text-white shadow-md transition-colors hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
             aria-label="Apply for farming support"
           >
-            Apply for Support
+            <a  href="https://wa.me/254775538394"
+    target="_blank"
+    rel="noopener noreferrer">
+ Apply for Support
+    </a>
+           
           </button>
         </div>
       </section>

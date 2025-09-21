@@ -51,32 +51,76 @@ export default function MembershipPage() {
       </section>
 
       {/* How to Join */}
-      <section className="bg-green-50 py-16">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-green-700 mb-6">
-            📝 How to Join
-          </h2>
-          <p className="text-lg text-gray-700 mb-6">
-            Download the PFN Membership Certificate Application and submit it to
-            our regional office.
-          </p>
-          <div className="flex flex-col md:flex-row gap-4 justify-center">
-            <Button variant="primary">Download Form</Button>
-            <Button variant="secondary">Contact Us</Button>
-          </div>
-        </div>
-      </section>
+<section className="bg-green-50 py-16"> 
+  <div className="max-w-4xl mx-auto px-6 text-center">
+    <h2 className="text-2xl md:text-3xl font-bold text-green-700 mb-6">
+      📝 How to Join
+    </h2>
+    <p className="text-lg text-gray-700 mb-6">
+      Download the PFN Membership Certificate Application and submit it to
+      our regional office.
+    </p>
+    <div className="flex flex-col md:flex-row gap-4 justify-center">
+      <Button variant="primary">Download Form</Button>
+
+      {/* Bouton WhatsApp */}
+    <Button variant="secondary">
+  <a
+    href="https://wa.me/254775538394"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Contact Us
+  </a>
+</Button>
+
+    </div>
+  </div>
+</section>
 
       {/* Call to Action */}
       <section className="max-w-5xl mx-auto px-6 py-20 text-center">
         <h2 className="text-2xl md:text-3xl font-bold text-green-700 mb-4">
           🌍 Become Part of the PFN Community
         </h2>
-        <p className="text-lg text-gray-700 mb-6 max-w-2xl mx-auto">
-          therefore you are welcomed. the membership fee breakdown is as follows:
-         <ul className=" text-yellow-500 bg-green-700 rounded-lg mt-20 grid gap-8 md:grid-cols-1"> <li>Individuals membeship fee: USD100</li> <li>Group membership fee: USD200</li> <li>Company membership fee: USD280</li><li>Cooperative membership fee: USD250</li></ul>
-        </p>
-        <Button variant="primary">Join Now</Button>
+<p className="text-lg text-gray-700 mb-6 max-w-2xl mx-auto text-center">
+  Therefore you are welcomed. The membership fee breakdown is as follows:
+</p>
+
+<ul className="mt-10 max-w-2xl mx-auto grid gap-4 md:grid-cols-2">
+  <li className="flex items-center justify-between p-5 bg-green-700 text-yellow-100 rounded-xl shadow-md hover:shadow-lg transition">
+    <span className="font-medium">Individuals Membership</span>
+    <span className="font-bold text-yellow-400">USD 100</span>
+  </li>
+
+  <li className="flex items-center justify-between p-5 bg-green-700 text-yellow-100 rounded-xl shadow-md hover:shadow-lg transition">
+    <span className="font-medium">Group Membership</span>
+    <span className="font-bold text-yellow-400">USD 200</span>
+  </li>
+
+  <li className="flex items-center justify-between p-5 bg-green-700 text-yellow-100 rounded-xl shadow-md hover:shadow-lg transition">
+    <span className="font-medium">Company Membership</span>
+    <span className="font-bold text-yellow-400">USD 280</span>
+  </li>
+
+  <li className="flex items-center justify-between p-5 bg-green-700 text-yellow-100 rounded-xl shadow-md hover:shadow-lg transition">
+    <span className="font-medium">Cooperative Membership</span>
+    <span className="font-bold text-yellow-400">USD 250</span>
+  </li>
+</ul>
+
+<div className="mt-10 text-center">
+  <Button variant="primary">
+    <a
+      href="https://wa.me/254775538394"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Join Now
+    </a>
+  </Button>
+</div>
+
       </section>
     </main>
   );
