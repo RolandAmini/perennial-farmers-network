@@ -2,299 +2,258 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { jsPDF } from "jspdf";
 
 export default function MembershipFormPage() {
   const [isGenerating, setIsGenerating] = useState(false);
-
-  interface WindowWithJsPDF extends Window {
-    jspdf?: {
-      jsPDF: new () => {
-        setFont: (font: string, style?: string) => void;
-        setFillColor: (r: number, g: number, b: number) => void;
-        rect: (
-          x: number,
-          y: number,
-          w: number,
-          h: number,
-          style?: string
-        ) => void;
-        setTextColor: (r: number, g: number, b: number) => void;
-        setFontSize: (size: number) => void;
-        text: (
-          text: string,
-          x: number,
-          y: number,
-          options?: { align?: string }
-        ) => void;
-        addPage: () => void;
-        setDrawColor: (r: number, g: number, b: number) => void;
-        save: (filename: string) => void;
-      };
-    };
-  }
 
   const generatePDF = async () => {
     setIsGenerating(true);
 
     try {
-      // Check if we're in the browser
-      if (typeof window === "undefined") return;
-
-      const windowWithJsPDF = window as WindowWithJsPDF;
-
-      // Create script element to load jsPDF
-      if (!windowWithJsPDF.jspdf) {
-        const script = document.createElement("script");
-        script.src =
-          "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
-        document.head.appendChild(script);
-
-        // Wait for script to load
-        await new Promise((resolve) => {
-          script.onload = resolve;
-        });
-      }
-
-      const { jsPDF } = windowWithJsPDF.jspdf!;
       const doc = new jsPDF();
+      const pageHeight = doc.internal.pageSize.getHeight();
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const margin = 20;
+      let yPos = 0;
 
-      // Set font
-      doc.setFont("helvetica");
+      // --- HELPER FUNCTIONS ---
+      const drawHeader = (title: string) => {
+        doc.setFillColor(45, 90, 39);
+        doc.rect(0, 0, pageWidth, 35, "F");
+        doc.setTextColor(255, 255, 255);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(22);
+        doc.text("PERENNIAL FARMERS NETWORK", pageWidth / 2, 15, {
+          align: "center",
+        });
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(14);
+        doc.text(title, pageWidth / 2, 25, { align: "center" });
+      };
 
-      // Header
-      doc.setFillColor(45, 90, 39);
-      doc.rect(0, 0, 210, 35, "F");
-      doc.setTextColor(255, 255, 255);
-      doc.setFontSize(24);
-      doc.setFont("helvetica", "bold");
-      doc.text("PERENNIAL FARMERS NETWORK", 105, 15, { align: "center" });
-      doc.setFontSize(14);
-      doc.setFont("helvetica", "normal");
-      doc.text("MEMBERSHIP APPLICATION FORM", 105, 25, { align: "center" });
+      const drawFooter = (pageNumber: number) => {
+        doc.setFontSize(9);
+        doc.setTextColor(128, 128, 128);
+        const footerText = `© 2025 Perennial Farmers Network | Page ${pageNumber} of 3`;
+        doc.text(footerText, pageWidth / 2, pageHeight - 10, {
+          align: "center",
+        });
+      };
 
-      doc.setTextColor(0, 0, 0);
-      doc.setFontSize(12);
+      const drawSectionTitle = (title: string, y: number) => {
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(14);
+        doc.setTextColor(0, 0, 0);
+        doc.text(title, margin, y);
+        return y + 9;
+      };
 
-      let yPos = 50;
+      drawHeader("MEMBERSHIP APPLICATION FORM");
+      yPos = 55;
 
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(14);
-      doc.text("PERSONAL INFORMATION", 20, yPos);
-      yPos += 15;
-
+      yPos = drawSectionTitle("PERSONAL INFORMATION", yPos);
       doc.setFont("helvetica", "normal");
       doc.setFontSize(11);
-
-      const fields = [
-        "Full Name: ___________________________________",
-        "Date of Birth: _______________  Gender: M / F (circle one)",
-        "Phone Number: ___________________  WhatsApp: ___________________",
-        "Email Address: ___________________________________",
-        "Physical Address: ___________________________________",
-        "Country: ___________________  County/State: ___________________",
-        "Nearest Town: ___________________  Postal Code: ___________________",
+      const personalFields = [
+        "Full Name: __________________________________________________________________",
+        "Date of Birth: _______________________________________________________________",
+        "Gender:  [   ] Male   [   ] Female   [   ] Other  [   ] Prefer not to say",
+        "Phone Number: _____________________________________________________________",
+        "WhatsApp Number: __________________________________________________________",
+        "Email Address: ________________________________________________________________",
+        "Physical Address: ___________________________________________________________",
+        "Country: ___________________________________________________________________",
+        "County / State: ___________________________________________________________",
+        "Nearest Town: _______________________________________________________________",
+        "Postal Code: _______________________________________________________________",
       ];
-
-      fields.forEach((field) => {
-        doc.text(field, 20, yPos);
-        yPos += 12;
+      personalFields.forEach((field) => {
+        doc.text(field, margin, yPos);
+        yPos += 14;
       });
 
-      yPos += 10;
-
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(14);
-      doc.text("FARMING INFORMATION", 20, yPos);
-      yPos += 15;
-
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(11);
-
-      const farmingFields = [
-        "Type of Farming: [  ] Crop Production  [  ] Livestock  [  ] Aquaculture  [  ] Mixed",
-        "Farm Size (acres/hectares): ___________________",
-        "Main Crops/Products: ___________________________________",
-        "Years of Farming Experience: ___________________",
-        "Current Challenges: ___________________________________",
-        "________________________________________________",
-      ];
-
-      farmingFields.forEach((field) => {
-        doc.text(field, 20, yPos);
-        yPos += 12;
-      });
-
-      yPos += 10;
-
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(14);
-      doc.text("MEMBERSHIP TYPE (Check One)", 20, yPos);
-      yPos += 15;
-
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(11);
-
-      const membershipTypes = [
-        "☐ Individual Membership - USD $150",
-        "☐ Group Membership - USD $200",
-        "☐ Company Membership - USD $280",
-        "☐ Cooperative Membership - USD $250",
-      ];
-
-      membershipTypes.forEach((type) => {
-        doc.text(type, 20, yPos);
-        yPos += 10;
-      });
-
-      yPos += 10;
-
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(14);
-      doc.text("PAYMENT INFORMATION", 20, yPos);
-      yPos += 15;
-
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(11);
-      doc.text(
-        "Payment Method: ☐ Mobile Money  ☐ Bank Transfer  ☐ Cash",
-        20,
-        yPos
-      );
-      yPos += 12;
-      doc.text(
-        "Transaction Reference: ___________________________________",
-        20,
-        yPos
-      );
-      yPos += 12;
-      doc.text("Date of Payment: ___________________", 20, yPos);
-      yPos += 20;
-
-      // Declaration
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(12);
-      doc.text("DECLARATION", 20, yPos);
-      yPos += 10;
-
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(10);
-      doc.text(
-        "I hereby apply for membership to the Perennial Farmers Network and declare that",
-        20,
-        yPos
-      );
-      yPos += 6;
-      doc.text(
-        "the information provided above is true and accurate to the best of my knowledge.",
-        20,
-        yPos
-      );
-      yPos += 15;
-
-      doc.text(
-        "Applicant Signature: ___________________  Date: ___________________",
-        20,
-        yPos
-      );
-
-      // Add new page for submission instructions
+      drawFooter(1);
       doc.addPage();
 
-      // Header for second page
-      doc.setFillColor(45, 90, 39);
-      doc.rect(0, 0, 210, 25, "F");
-      doc.setTextColor(255, 255, 255);
-      doc.setFontSize(16);
-      doc.setFont("helvetica", "bold");
-      doc.text("SUBMISSION INSTRUCTIONS", 105, 15, { align: "center" });
+      drawHeader("MEMBERSHIP APPLICATION FORM (Continued)");
+      yPos = 55;
 
-      doc.setTextColor(0, 0, 0);
-      yPos = 40;
+      yPos = drawSectionTitle("FARMING INFORMATION", yPos);
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(11);
+      const farmingFields = [
+        "Type of Farming:  [  ] Crop Production   [  ] Livestock   [  ] Aquaculture   [  ] Mixed",
+        "Farm Size (acres/hectares): ________________________________________________",
+        "Main Crops/Products: _____________________________________________________",
+        "Years of Farming Experience: _______________________________________________",
+        "Current Challenges: _______________________________________________________",
+        "________________________________________________________________________",
+      ];
+      farmingFields.forEach((field) => {
+        doc.text(field, margin, yPos);
+        yPos += 14;
+      });
 
+      yPos += 10; // Extra space
+
+      yPos = drawSectionTitle("MEMBERSHIP TYPE (Check One)", yPos);
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(11);
+      const membershipTypes = [
+        "[   ]   Individual Membership  -  USD $150",
+        "[   ]   Group Membership  -  USD $200",
+        "[   ]   Company Membership  -  USD $280",
+        "[   ]   Cooperative Membership  -  USD $250",
+      ];
+      membershipTypes.forEach((type) => {
+        doc.text(type, margin, yPos);
+        yPos += 12;
+      });
+
+      yPos += 10;
+
+      yPos = drawSectionTitle("DECLARATION", yPos);
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(10);
+      const declarationText =
+        "I hereby apply for membership to the Perennial Farmers Network and declare that the information provided above is true and accurate to the best of my knowledge. I agree to abide by the rules of the network.";
+      const declarationLines = doc.splitTextToSize(
+        declarationText,
+        pageWidth - margin * 2
+      );
+      doc.text(declarationLines, margin, yPos);
+      yPos += declarationLines.length * 5 + 20;
+
+      doc.setFontSize(11);
+      doc.text(
+        "Applicant Signature: ___________________________  Date: ________________________",
+        margin,
+        yPos
+      );
+
+      drawFooter(2);
+      doc.addPage();
+
+      drawHeader("SUBMISSION & PAYMENT INSTRUCTIONS");
+      yPos = 55;
+
+      yPos = drawSectionTitle("Step 1: Submit Your Application Form", yPos);
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(11);
+      const submissionSteps = [
+        "First, please ensure you have completed Page 1 and Page 2.",
+        "Submit your completed form to us via ONE of the following methods:",
+        "      • WhatsApp (Recommended): +254 775 538 394",
+        "      • Email: regional@pfnfarmers.org",
+      ];
+      submissionSteps.forEach((step) => {
+        doc.text(step, margin, yPos);
+        yPos += 10;
+      });
+      doc.text(
+        "We will contact you to confirm we have received it.",
+        margin,
+        yPos
+      );
+      yPos += 20;
+
+      yPos = drawSectionTitle("Step 2: Pay the Membership Fee", yPos);
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(11);
+      doc.text(
+        "You can send your registration fee using any of the services below:",
+        margin,
+        yPos
+      );
+      yPos += 10;
       doc.setFont("helvetica", "bold");
-      doc.setFontSize(14);
-      doc.text("HOW TO SUBMIT YOUR APPLICATION", 20, yPos);
+      doc.text(
+        "   • Bank Transfer   • Mukuru   • Western Union   • World Remit   • MoneyGram",
+        margin,
+        yPos
+      );
       yPos += 15;
 
       doc.setFont("helvetica", "normal");
+      doc.text(
+        "Please use the following details for the transfer:",
+        margin,
+        yPos
+      );
+      yPos += 8;
+
+      // --- Recipient Details Box ---
+      doc.setFillColor(245, 245, 245); // Light grey background for emphasis
+      doc.rect(margin, yPos, pageWidth - margin * 2, 18, "F");
+      doc.setFont("helvetica", "bold");
+      doc.setTextColor(0, 0, 0);
+      doc.text(
+        "Recipient's Name:   COLLINS OTIENO OCHIENG",
+        margin + 5,
+        yPos + 7
+      );
+      doc.setFont("helvetica", "normal");
+      doc.text(
+        "Reference:   Please use your own full name",
+        margin + 5,
+        yPos + 14
+      );
+      yPos += 28;
+
+      doc.setFontSize(9);
+      doc.setFont("helvetica", "italic");
+      doc.setTextColor(100, 100, 100);
+      doc.text(
+        "Note: All funds from membership subscriptions are strictly for administrative purposes.",
+        margin,
+        yPos
+      );
+      yPos += 15;
+      doc.setTextColor(0, 0, 0);
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(8);
+
+      yPos = drawSectionTitle("Step 3: Send Your Payment Receipt", yPos);
+      doc.setFont("helvetica", "normal");
       doc.setFontSize(11);
 
-      const instructions = [
-        "1. COMPLETE THE FORM",
-        "   • Fill out all sections clearly and legibly",
-        "   • Ensure all required information is provided",
-        "   • Sign and date the declaration",
-        "",
-        "2. SUBMIT YOUR APPLICATION",
-        "   • WhatsApp: +254 775 538 394 (Scan and send photo/PDF)",
-        "   • Email: regional@pfnfarmers.org (Attach scanned copy)",
-        "   • Visit our regional office in person",
-        "",
-        "3. PAYMENT METHODS",
-        "   • Mobile Money: M-Pesa, Airtel Money",
-        "   • Bank Transfer: Details will be provided upon submission",
-        "   • Cash Payment: At regional offices only",
-        "",
-        "4. PROCESSING TIME",
-        "   • Application review: 3-5 business days",
-        "   • Certificate issuance: 5-7 business days after approval",
-        "   • You will receive confirmation via WhatsApp/Email",
-      ];
-
-      instructions.forEach((instruction) => {
-        if (instruction.startsWith("   •") || instruction.startsWith("   ")) {
-          doc.setFont("helvetica", "normal");
-          doc.text(instruction, 25, yPos);
-        } else if (instruction.match(/^\d+\./)) {
-          doc.setFont("helvetica", "bold");
-          doc.text(instruction, 20, yPos);
-        } else {
-          doc.setFont("helvetica", "normal");
-          doc.text(instruction, 20, yPos);
-        }
-        yPos += 8;
-      });
-
-      yPos += 10;
-
-      // Contact Information Box
-      doc.setFillColor(248, 249, 250);
-      doc.rect(15, yPos, 180, 40, "F");
-      doc.setDrawColor(45, 90, 39);
-      doc.rect(15, yPos, 180, 40);
-
-      yPos += 10;
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(12);
-      doc.text("CONTACT INFORMATION", 105, yPos, { align: "center" });
-      yPos += 10;
-
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(10);
-      doc.text("WhatsApp: +254 775 538 394", 105, yPos, { align: "center" });
-      yPos += 6;
-      doc.text("Email: regional@pfnfarmers.org", 105, yPos, {
-        align: "center",
-      });
-      yPos += 6;
-      doc.text("Website: www.pfnfarmers.org", 105, yPos, { align: "center" });
-
-      // Footer
-      yPos = 280;
-      doc.setFontSize(8);
-      doc.setTextColor(128, 128, 128);
       doc.text(
-        "© 2025 Perennial Farmers Network. All rights reserved.",
-        105,
-        yPos,
-        { align: "center" }
+        "This final step is very important. We cannot register you without a copy of the receipt.",
+        margin,
+        yPos
       );
+      yPos += 10;
+      doc.text(
+        "Please send a clear photo or scan to us on WhatsApp or Email for verification.",
+        margin,
+        yPos
+      );
+      yPos += 20;
 
-      // Save the PDF
+      yPos = drawSectionTitle("WHAT HAPPENS NEXT?", yPos);
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(11);
+      const nextSteps = [
+        "• Once your payment is verified (usually within 24 hours), you will be",
+        "  registered as an official member.",
+        "• We will immediately issue and send you your PFN Membership Number",
+        "  and official Membership Certificate.",
+      ];
+      const nextStepsLines = doc.splitTextToSize(
+        nextSteps.join("\n"),
+        pageWidth - margin * 2
+      );
+      doc.text(nextStepsLines, margin, yPos);
+
+      drawFooter(3);
+
       doc.save("PFN_Membership_Application_Form.pdf");
     } catch (error) {
       console.error("Error generating PDF:", error);
-      alert("Error generating PDF. Please try again.");
+      alert(
+        "An error occurred while generating the PDF. Please check the console for details."
+      );
     } finally {
       setIsGenerating(false);
     }
@@ -477,8 +436,8 @@ export default function MembershipFormPage() {
                   5
                 </span>
                 <div>
-                  <strong>Receive</strong> your certificate within 5-7 business
-                  days
+                  <strong>Receive</strong> your certificate within 24 hours of
+                  approval
                 </div>
               </li>
             </ol>
