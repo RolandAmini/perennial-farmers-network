@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "@/components/Button";
+import Link from "next/link";
 
 export default function AboutPage() {
   return (
@@ -28,7 +29,9 @@ export default function AboutPage() {
             to ensure sustainable agriculture and improve food security across
             the continent.
           </p>
-          <Button variant="primary">Join the Movement</Button>
+          <Link href="/membership">
+            <Button variant="primary">Join the Movement</Button>
+          </Link>
         </div>
 
         {/* Image */}

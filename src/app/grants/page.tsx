@@ -28,11 +28,12 @@ export default function GrantsPage() {
           with equipment, seeds, and business expansion.
         </p>
         <Button variant="primary">
-
-          <a    href="https://wa.me/254775538394"
-                target="_blank"
-                rel="noopener noreferrer">
-        Apply Now
+          <a
+            href="https://wa.me/254775538394"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Apply Now
           </a>
         </Button>
       </section>
@@ -73,7 +74,6 @@ export default function GrantsPage() {
         </div>
       </section>
 
-      {/* Eligibility */}
       <section className="max-w-5xl mx-auto px-6 py-16 text-center">
         <h2 className="text-2xl md:text-3xl font-bold text-green-700 mb-6">
           ✅ Eligibility

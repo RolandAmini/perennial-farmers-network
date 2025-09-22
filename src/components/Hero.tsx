@@ -44,10 +44,9 @@ export default function Hero() {
     },
   ];
 
-  // 2. Eligibility List
   const eligibilityCriteria = [
-    "Grants up to UDS 50000",
-    "Preferetial rate loans",
+    "Grants up to USD 50000",
+    "Preferential rate loans",
     "Agricultural equipment financing",
     "Start-up capital for new farmers",
     "Custom technical support",
@@ -67,8 +66,6 @@ export default function Hero() {
 
   return (
     <section className="relative bg-green-800 text-white">
-    
-
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-16 md:py-24">
         <div className="mb-16 text-center">
           <h1 className="mb-6 text-4xl font-bold leading-tight md:text-6xl">
@@ -139,7 +136,7 @@ export default function Hero() {
         {/* Final Apply Button */}
         <div className="mt-12 flex justify-center md:justify-start">
           <Link
-            href="/apply"
+            href="/membership"
             className="inline-flex items-center rounded-lg bg-yellow-500 px-8 py-4 text-lg font-bold text-gray-900 shadow-lg transition hover:bg-yellow-400 focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2 focus:ring-offset-green-800"
           >
             Apply Now
