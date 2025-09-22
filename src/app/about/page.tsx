@@ -10,6 +10,13 @@ import {
   FaStore,
 } from "react-icons/fa";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Us",
+  description:
+    "Learn about the PFN story, our global impact, and our proven model for empowering millions of farmers across Africa, Asia, and Europe.",
+};
 
 export default function AboutPage() {
   return (
