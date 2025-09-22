@@ -8,9 +8,7 @@ export default function AboutPage() {
       {/* Section Header */}
       <section className="relative bg-green-700 text-white py-20">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            About Us
-          </h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">About Us</h1>
           <p className="text-lg md:text-xl text-green-100">
             Learn more about the Perennial Farmers Network and our mission.
           </p>
@@ -36,7 +34,7 @@ export default function AboutPage() {
         {/* Image */}
         <div className="flex justify-center">
           <img
-            src="/farmer.jpg"
+            src="/farmer.png"
             alt="African farmers working"
             className="rounded-lg shadow-lg w-full max-w-md object-cover"
           />

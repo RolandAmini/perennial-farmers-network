@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-green-800 text-white mt-10">
+    <footer className="bg-green-800 text-white mt-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Logo + Description */}
         <div>
@@ -58,13 +58,29 @@ export default function Footer() {
         {/* Contact Info */}
         <div>
           <h3 className="font-semibold text-lg mb-4">Contact Us</h3>
-          <p className="text-gray-200 text-sm">
-            📧 regional@pfnfarmers.org
-            <br />
-            📞 +254 775 538 394
-            <br />
-            🌍 Serving all of Africa
-          </p>
+          <div className="text-gray-200 text-sm space-y-2">
+            <div>
+              📧{" "}
+              <Link
+                href="mailto:regional@pfnfarmers.org"
+                className="hover:text-white transition-colors duration-300 underline"
+              >
+                regional@pfnfarmers.org
+              </Link>
+            </div>
+            <div>
+              📞{" "}
+              <Link
+                href="https://wa.me/254775538394"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors duration-300 underline"
+              >
+                +254 775 538 394
+              </Link>
+            </div>
+            <div>🌍 Serving all of Africa</div>
+          </div>
         </div>
       </div>
 

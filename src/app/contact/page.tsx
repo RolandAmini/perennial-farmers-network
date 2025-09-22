@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { FaEnvelope, FaWhatsapp, FaMapMarkerAlt } from "react-icons/fa";
 
@@ -58,15 +59,29 @@ export default function ContactPage() {
       <section className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12">
         {/* Contact Details */}
         <div>
-          <h2 className="text-2xl font-bold text-green-700 mb-6">📍 Get in Touch</h2>
+          <h2 className="text-2xl font-bold text-green-700 mb-6">
+            📍 Get in Touch
+          </h2>
           <div className="space-y-6">
             <div className="flex items-center gap-4">
               <FaEnvelope className="text-green-700 text-xl" />
-              <p className="text-gray-700">regional@pfnfarmers.org</p>
+              <Link
+                href="mailto:regional@pfnfarmers.org"
+                className="text-gray-700 hover:text-green-700 transition-colors duration-300 underline"
+              >
+                regional@pfnfarmers.org
+              </Link>
             </div>
             <div className="flex items-center gap-4">
               <FaWhatsapp className="text-green-700 text-xl" />
-              <p className="text-gray-700">+254 775 538 394</p>
+              <Link
+                href="https://wa.me/254775538394"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-700 hover:text-green-700 transition-colors duration-300 underline"
+              >
+                +254 775 538 394
+              </Link>
             </div>
             <div className="flex items-center gap-4">
               <FaMapMarkerAlt className="text-green-700 text-xl" />
@@ -77,10 +92,14 @@ export default function ContactPage() {
 
         {/* Contact Form */}
         <div>
-          <h2 className="text-2xl font-bold text-green-700 mb-6">✉️ Send a Message</h2>
+          <h2 className="text-2xl font-bold text-green-700 mb-6">
+            ✉️ Send a Message
+          </h2>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Name
+              </label>
               <input
                 type="text"
                 value={form.name}
@@ -91,7 +110,9 @@ export default function ContactPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Email
+              </label>
               <input
                 type="email"
                 value={form.email}
@@ -102,7 +123,9 @@ export default function ContactPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Message
+              </label>
               <textarea
                 rows={4}
                 value={form.message}
@@ -128,11 +151,13 @@ export default function ContactPage() {
       {/* Map Section */}
       <section className="bg-green-50 py-16">
         <div className="max-w-5xl mx-auto px-6 text-center">
-          <h2 className="text-2xl font-bold text-green-700 mb-6">🌍 Our Reach</h2>
+          <h2 className="text-2xl font-bold text-green-700 mb-6">
+            🌍 Our Reach
+          </h2>
           <p className="text-lg text-gray-700 mb-8">
-            PFN is active across Africa, supporting farmers and fishers in all regions.
+            PFN is active across Africa, supporting farmers and fishers in all
+            regions.
           </p>
-         
         </div>
       </section>
     </main>
