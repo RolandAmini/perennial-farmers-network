@@ -175,31 +175,7 @@ export default function MembershipFormPage() {
       );
       yPos += 15;
 
-      doc.setFont("helvetica", "normal");
-      doc.text(
-        "Please use the following details for the transfer:",
-        margin,
-        yPos
-      );
-      yPos += 8;
-
       // --- Recipient Details Box ---
-      doc.setFillColor(245, 245, 245); // Light grey background for emphasis
-      doc.rect(margin, yPos, pageWidth - margin * 2, 18, "F");
-      doc.setFont("helvetica", "bold");
-      doc.setTextColor(0, 0, 0);
-      doc.text(
-        "Recipient's Name:   COLLINS OTIENO OCHIENG",
-        margin + 5,
-        yPos + 7
-      );
-      doc.setFont("helvetica", "normal");
-      doc.text(
-        "Reference:   Please use your own full name",
-        margin + 5,
-        yPos + 14
-      );
-      yPos += 28;
 
       doc.setFontSize(9);
       doc.setFont("helvetica", "italic");
