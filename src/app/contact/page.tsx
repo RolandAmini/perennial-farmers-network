@@ -5,6 +5,10 @@ import { useState } from "react";
 import { FaEnvelope, FaWhatsapp, FaMapMarkerAlt } from "react-icons/fa";
 
 export default function ContactPage() {
+  // --- FORM STATE & LOGIC ---
+  // The state and submit handler for the form are preserved here.
+  // Uncomment this block when you are ready to re-enable the form.
+  /*
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -14,7 +18,6 @@ export default function ContactPage() {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
 
-  // Fonction pour envoyer le formulaire
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -33,7 +36,8 @@ export default function ContactPage() {
         setStatus("✅ Message sent successfully!");
         setForm({ name: "", email: "", message: "" });
       } else {
-        setStatus("❌An error has occurred. Please try again.");
+        const errorData = await res.json();
+        setStatus(`❌ Error: ${errorData.error || "Please try again."}`);
       }
     } catch (error) {
       setStatus("⚠️ Error connecting to the server.");
@@ -41,6 +45,7 @@ export default function ContactPage() {
       setLoading(false);
     }
   };
+  */
 
   return (
     <main className="min-h-screen bg-white text-gray-800">
@@ -55,7 +60,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Contact Info + Form */}
+      {/* Contact Info + Form/Card */}
       <section className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12">
         {/* Contact Details */}
         <div>
@@ -90,7 +95,51 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* Contact Form */}
+        {/* =================================================================== */}
+        {/* === THE SMART FIX: The Confident "Direct Connect" Card === */}
+        {/* =================================================================== */}
+        <div>
+          <h2 className="text-2xl font-bold text-green-700 mb-6">
+            ✉️ Connect With Us Directly
+          </h2>
+          <div className="bg-green-50 border border-green-200 rounded-lg p-8 space-y-6">
+            <p className="text-gray-700 text-center">
+              We believe in personal conversations. For the most direct support
+              and answers to your questions, please reach out via WhatsApp or
+              Email. Our team is ready to help.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link
+                href="https://wa.me/254775538394"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-3 bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow hover:bg-green-800 transition"
+              >
+                <FaWhatsapp />
+                Chat on WhatsApp
+              </Link>
+              <Link
+                href="mailto:regional@pfnfarmers.org"
+                className="flex-1 flex items-center justify-center gap-3 bg-gray-600 text-white font-bold py-3 px-6 rounded-lg shadow hover:bg-gray-700 transition"
+              >
+                <FaEnvelope />
+                Send an Email
+              </Link>
+            </div>
+          </div>
+        </div>
+        {/* =================================================================== */}
+        {/* === END OF FIX === */}
+        {/* =================================================================== */}
+
+        {/* =================================================================== */}
+        {/* === PRESERVED FORM CODE (COMMENTED OUT) === */}
+        {/* To re-enable the form: */}
+        {/* 1. DELETE the "Direct Connect" Card <div> block above. */}
+        {/* 2. UNCOMMENT the entire block below. */}
+        {/* 3. UNCOMMENT the state and handleSubmit function at the top of the file. */}
+        {/* =================================================================== */}
+        {/*
         <div>
           <h2 className="text-2xl font-bold text-green-700 mb-6">
             ✉️ Send a Message
@@ -102,6 +151,7 @@ export default function ContactPage() {
               </label>
               <input
                 type="text"
+                name="name"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:outline-none"
@@ -115,6 +165,7 @@ export default function ContactPage() {
               </label>
               <input
                 type="email"
+                name="email"
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:outline-none"
@@ -128,6 +179,7 @@ export default function ContactPage() {
               </label>
               <textarea
                 rows={4}
+                name="message"
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:outline-none"
@@ -138,14 +190,19 @@ export default function ContactPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-green-700 text-white py-3 px-6 rounded-lg shadow hover:bg-green-800 transition"
+              className="w-full bg-green-700 text-white py-3 px-6 rounded-lg shadow hover:bg-green-800 transition disabled:bg-green-400 disabled:cursor-not-allowed"
             >
               {loading ? "Sending..." : "Send Message"}
             </button>
           </form>
 
-          {status && <p className="mt-4 text-center text-sm">{status}</p>}
+          {status && (
+            <p className={`mt-4 text-center text-sm ${status.includes("Error") || status.includes("error") ? "text-red-600" : "text-green-600"}`}>
+              {status}
+            </p>
+          )}
         </div>
+        */}
       </section>
 
       {/* Map Section */}
