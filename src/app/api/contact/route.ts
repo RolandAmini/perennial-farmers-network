@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
     }
 
     await resend.emails.send({
-      from: "Contact Form <noreply@send.pfnfarmers.org>",
+      from: "Contact Form <send@pfnfarmers.org>",
       to: "regional@pfnfarmers.org",
       subject: `New Message from ${name} via Contact Form`,
       replyTo: email,
