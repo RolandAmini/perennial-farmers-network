@@ -167,17 +167,7 @@ export default function ContactPage() {
       </section>
 
       {/* Map Section */}
-      <section className="bg-green-50 py-16">
-        <div className="max-w-5xl mx-auto px-6 text-center">
-          <h2 className="text-2xl font-bold text-green-700 mb-6">
-            🌍 Our Reach
-          </h2>
-          <p className="text-lg text-gray-700 mb-8">
-            PFN is active across Africa, supporting farmers and fishers in all
-            regions.
-          </p>
-        </div>
-      </section>
+      
     </main>
   );
 }
