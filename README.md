@@ -1,10 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+#  Perennial Farmers Network (PFN)
 
-## Getting Started
+**Perennial Farmers Network (PFN)** is a pan-African digital platform designed to support farmers and fishers by providing access to grants, training, market opportunities, and regional networking.  
+Our mission is to empower African agricultural communities through sustainable practices, education, and strategic partnerships.
 
-First, run the development server:
+---
 
+##  Project Overview
+
+PFN aims to:
+- Connect farmers and fishers across Africa  
+- Provide access to grants and agricultural inputs  
+- Offer training and capacity-building programs  
+- Improve market access for agricultural products  
+- Build a strong regional farmer network  
+
+---
+
+## Tech Stack
+
+- **Framework:** Next.js (App Router)  
+- **Language:** TypeScript / JavaScript  
+- **Styling:** Tailwind CSS  
+- **Fonts:** next/font (Geist – optimized by Vercel)  
+- **Deployment:** Vercel  
+
+---
+
+##  Getting Started
+
+This project was bootstrapped with **create-next-app**.
+
+### 1️ Install dependencies
 ```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+
+### Run the development server
 npm run dev
 # or
 yarn dev
@@ -12,25 +48,34 @@ yarn dev
 pnpm dev
 # or
 bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open  http://localhost:3000
+ in your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+##  Project Overview
+src/
+  app/
+    page.tsx        # Home page
+    about/          # About page
+    grants/         # Grants & opportunities
+    membership/     # Membership
+    news/           # News & updates
+    contact/        # Contact page
+  components/
+    Navbar.tsx
+    Footer.tsx
+    Hero.tsx
+    Section.tsx
+public/
+  images/           # Static images (hero, farmers, logo)
 
 ## Learn More
+ Next.js Documentation: https://nextjs.org/docs
 
-To learn more about Next.js, take a look at the following resources:
+ Learn Next.js: https://nextjs.org/learn
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+ Next.js GitHub: https://github.com/vercel/next.js
+## Deployment
+https://www.pfnfarmers.org/
