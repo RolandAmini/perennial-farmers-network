@@ -1,13 +1,22 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Script from "next/script"; // Import nécessaire pour Google Analytics
+import Script from "next/script";
 import './globals.css';
+
+// 1. Ajout des métadonnées (Titre, Description et Icône)
+export const metadata = {
+  title: "PFN Farmers - Perennial Farmers Network",
+  description: "Empowering African Farmers through Grants, Training, and Access to Markets. Join PFN Farmers to Transform Agriculture and Improve Livelihoods.",
+  icons: {
+    icon: "/icon.png", 
+   apple: '/icon.png',
+  },
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className="bg-white">
-        {/* Intégration Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-JHK6WP0JKX"
           strategy="afterInteractive"
