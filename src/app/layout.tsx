@@ -6,7 +6,7 @@ import './globals.css';
 // 1. Ajout des métadonnées (Titre, Description et Icône)
 export const metadata = {
   title: "PFN Farmers - Perennial Farmers Network",
-  description: "Empowering African Farmers through Grants, Training, and Access to Markets. Join PFN Farmers to Transform Agriculture and Improve Livelihoods.",
+  description: "Empowering African Farmers through Grants, Training, and Access to Markets. Join PFN Farmers to Transform Agriculture and Improve Livelihoods .",
   icons: {
     icon: "/icon.png", 
    apple: '/icon.png',
